@@ -4,133 +4,123 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Arthur Antunes | Portfólio</title>
+
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
 </head>
 <body>
 
-  <!-- HEADER -->
-  <header>
-    <nav>
-  <h1 class="logo">Arthur</h1>
-  <div class="hamburger" id="hamburger-btn" aria-label="Abrir menu" tabindex="0">
-    <span></span>
-    <span></span>
-    <span></span>
-  </div>
-  <ul class="menu" id="menu-list">
-    <li><a href="#home">Home</a></li>
-    <li><a href="#sobre">Sobre</a></li>
-    <li><a href="#skills">Skills</a></li>
-    <li><a href="#projetos">Projetos</a></li>
-    <li><a href="#contato">Contato</a></li>
-  </ul>
-</nav>
+  <!-- NAVBAR -->
+  <nav>
+    <h1 class="logo">Portfólio</h1>
 
-    <!-- Card de Perfil -->
-    <div class="card-perfil">
-      <img src="imagens/foto-perfil.jpg" alt="Foto de Arthur" />
-      <h1>Arthur Antunes</h1>
-      <p>Desenvolvedor Web em Formação 🚀</p>
-      <div class="social-links">
-        <a href="https://github.com/apsantos05" target="_blank" rel="noopener" class="icon">GitHub</a>
-        <a href="https://www.linkedin.com/in/apsantos05" target="_blank" rel="noopener" class="icon">LinkedIn</a>
-        <a href="https://www.instagram.com/_arthurpsantos" target="_blank" rel="noopener" class="icon">Instagram</a>
-      </div>
-      <a class="btn-whatsapp" href="https://wa.me/5517992301681" target="_blank" rel="noopener">Fale comigo no WhatsApp</a>
+    <ul class="menu" id="menu-list">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#sobre">Sobre</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projetos">Projetos</a></li>
+      <li><a href="#contato">Contato</a></li>
+    </ul>
+
+    <div id="hamburger-btn" class="hamburger">
+      <span></span><span></span><span></span>
     </div>
-  </header>
+  </nav>
 
-  <main>
-    <section id="home" style="padding-top:40px;">
-      <div style="max-width:1100px;margin:60px auto;text-align:center;">
-        <h2>Olá, eu sou o Arthur 👋</h2>
+  <!-- HERO -->
+  <header id="home">
+    <div class="hero">
+
+      <div class="hero-text fade-in-left">
+        <h2><span id="typing"></span><span class="cursor">|</span></h2>
         <p>Futuro Desenvolvedor Front-End • Apaixonado por Tecnologia</p>
         <a class="btn-sobre" href="#sobre">Conheça mais sobre mim</a>
       </div>
-    </section>
 
-    <section id="sobre">
-      <div class="sobre-container" style="max-width:1100px;margin:auto;display:flex;gap:30px;align-items:center;">
-        <div class="sobre-img">
-          <img src="imagens/foto-perfil.jpg" alt="Foto de Arthur" style="width:220px;height:220px;object-fit:cover;border-radius:14px;">
+      <div class="hero-img fade-in-right">
+        <img src="imagens/perfil.jpg" alt="Foto de Arthur">
+        <div class="social-links">
+          <a href="https://github.com/apsantos05" target="_blank"><i class="fa-brands fa-github"></i></a>
+          <a href="https://www.linkedin.com/in/apsantos05" target="_blank"><i class="fa-brands fa-linkedin"></i></a>
+          <a href="https://www.instagram.com/_arthurpsantos" target="_blank"><i class="fa-brands fa-instagram"></i></a>
         </div>
-        <div class="sobre-texto">
-          <h2>Sobre Mim</h2>
-          <p>
-            Me chamo <strong>Arthur Antunes</strong>, moro em <strong>Mirassol - SP</strong>.<br>
-            Desde muito novo sempre tive uma conexão forte com tecnologia e hoje estou em uma jornada intensa
-            de 3 meses para me tornar um desenvolvedor Front-End.
-          </p>
-          <p>
-            Sou motivado pela minha família e minha namorada. No tempo livre treino Muay Thai e curto música eletrônica.
-          </p>
-          <a class="btn-sobre" href="#skills">Ver Skills</a>
-        </div>
+        <a class="btn-whatsapp" href="https://wa.me/5517992301681" target="_blank">
+          <i class="fa-brands fa-whatsapp"></i> WhatsApp
+        </a>
       </div>
-    </section>
 
-    <section id="skills" class="skills-section">
-      <h2 style="text-align:center;margin-bottom:24px;">Skills & Tech</h2>
-      <div style="max-width:900px;margin:0 auto;display:grid;grid-template-columns:repeat(2,1fr);gap:18px;">
-        <div class="skill">
-          <span>HTML</span>
-          <div class="skill-bar"><div class="skill-fill html"></div></div>
-          <div class="skill-meta">90% — Avançado</div>
-        </div>
-        <div class="skill">
-          <span>CSS</span>
-          <div class="skill-bar"><div class="skill-fill css"></div></div>
-          <div class="skill-meta">85% — Intermediário/Avançado</div>
-        </div>
-        <div class="skill">
-          <span>JavaScript</span>
-          <div class="skill-bar"><div class="skill-fill js"></div></div>
-          <div class="skill-meta">70% — Intermediário</div>
-        </div>
-        <div class="skill">
-          <span>React.js</span>
-          <div class="skill-bar"><div class="skill-fill react"></div></div>
-          <div class="skill-meta">55% — Iniciante/Intermediário</div>
-        </div>
-        <div class="skill">
-          <span>Git & GitHub</span>
-          <div class="skill-bar"><div class="skill-fill git"></div></div>
-          <div class="skill-meta">65% — Intermediário</div>
-        </div>
-        <div class="skill">
-          <span>APIs / JSON</span>
-          <div class="skill-bar"><div class="skill-fill api"></div></div>
-          <div class="skill-meta">60% — Iniciante/Intermediário</div>
-        </div>
+    </div>
+  </header>
+
+  <!-- SOBRE -->
+  <section id="sobre">
+    <div class="sobre-container fade-in">
+      <div class="sobre-texto">
+        <h2>Sobre Mim</h2>
+        <p>
+          Me chamo <strong>Arthur Antunes</strong>, moro em <strong>Mirassol - SP</strong>.
+          Sempre conectado à tecnologia e atualmente focado em me tornar um desenvolvedor Front-End completo.
+        </p>
+        <p>No tempo livre, treino Muay Thai e curto música eletrônica 🎧🔥</p>
+        <a class="btn-sobre" href="#skills">Ver Skills</a>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <section id="projetos" class="projetos-section">
-      <h2 style="text-align:center;margin-bottom:24px;">Projetos</h2>
-      <div class="projetos-grid">
-        <div class="projeto-card">
-          <img src="imagens/projeto1.png" alt="Print do projeto 1" />
-          <h3>Meu primeiro site</h3>
-          <p>Site feito com HTML,CSS e JS para treinar conceitos básicos de web.</p>
-          <a href="https://github.com/apsantos05/portifolio" target="_blank">Ver no GitHub</a>
-        </div>
+  <!-- SKILLS -->
+  <section id="skills" class="skills-section fade-in">
+    <h2>Skills & Tech</h2>
+
+    <div class="skills-grid">
+      <div class="skill"><span>HTML</span><div class="skill-bar"><div class="skill-fill" data-width="90%"></div></div><div class="skill-meta">90%</div></div>
+      <div class="skill"><span>CSS</span><div class="skill-bar"><div class="skill-fill" data-width="85%"></div></div><div class="skill-meta">85%</div></div>
+      <div class="skill"><span>JavaScript</span><div class="skill-bar"><div class="skill-fill" data-width="70%"></div></div><div class="skill-meta">70%</div></div>
+      <div class="skill"><span>React.js</span><div class="skill-bar"><div class="skill-fill" data-width="55%"></div></div><div class="skill-meta">55%</div></div>
+      <div class="skill"><span>Git & GitHub</span><div class="skill-bar"><div class="skill-fill" data-width="65%"></div></div><div class="skill-meta">65%</div></div>
+      <div class="skill"><span>APIs / JSON</span><div class="skill-bar"><div class="skill-fill" data-width="60%"></div></div><div class="skill-meta">60%</div></div>
+    </div>
+  </section>
+
+  <!-- PROJETOS -->
+  <section id="projetos" class="projetos-section fade-in">
+    <h2>Projetos</h2>
+    <div class="carousel">
+
+      <div class="projeto-card">
+        <img src="imagens/projeto-temp.jpg">
+        <h3>Projeto Em Breve</h3>
+        <p>Descrição aguarde...</p>
+        <a href="#">Adicionar Link</a>
       </div>
-    </section>
 
-    <section id="contato">
-      <h2 style="text-align:center;">Contato</h2>
-      <div style="text-align:center;margin-top:18px;">
-        <a href="https://github.com/apsantos05" target="_blank" rel="noopener">GitHub</a> •
-        <a href="https://www.linkedin.com/in/apsantos05" target="_blank" rel="noopener">LinkedIn</a> •
-        <a href="https://www.instagram.com/_arthurpsantos" target="_blank" rel="noopener">Instagram</a> •
-        <a href="https://wa.me/5517992301681" target="_blank" rel="noopener">WhatsApp</a>
+      <div class="projeto-card">
+        <img src="imagens/projeto-temp.jpg">
+        <h3>Projeto Em Breve</h3>
+        <p>Descrição aguarde...</p>
+        <a href="#">Adicionar Link</a>
       </div>
-    </section>
-  </main>
 
-  <footer style="text-align:center;padding:30px 0;margin-top:30px;">
+      <div class="projeto-card">
+        <img src="imagens/projeto-temp.jpg">
+        <h3>Projeto Em Breve</h3>
+        <p>Descrição aguarde...</p>
+        <a href="#">Adicionar Link</a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CONTATO -->
+  <section id="contato">
+    <h2>Contato</h2>
+    <p>Email: <strong>arthurpsantos05@gmail.com</strong></p>
+  </section>
+
+  <footer>
     <p>© 2024 Arthur Antunes • Todos os direitos reservados</p>
   </footer>
+
+  <button id="btn-topo"><i class="fa-solid fa-arrow-up"></i></button>
 
   <script src="script.js"></script>
 </body>
