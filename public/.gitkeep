@@ -1,0 +1,4 @@
+# Assets estáticos do site.
+# ⚑ Adicionar aqui:
+#   - arthur-santos.jpg        (foto do Hero — ver lib/site.ts → site.photo)
+#   - projects/<slug>/*.webp   (prints reais dos projetos — ver content/projects)
