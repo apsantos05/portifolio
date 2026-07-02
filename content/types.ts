@@ -15,11 +15,14 @@ export type NavItem = {
 }
 
 // ── Sobre ────────────────────────────────────────────────────────────
-export type AboutPillar = { title: string; text: string }
 export type AboutContent = {
+  title: string
+  /** parágrafo de abertura (lead, tipografia maior) */
   lead: string
+  /** corpo da narrativa */
   paragraphs: string[]
-  pillars: AboutPillar[]
+  /** frase-punch em destaque (pull-quote) */
+  highlight: string
 }
 
 // ── Serviços ─────────────────────────────────────────────────────────
