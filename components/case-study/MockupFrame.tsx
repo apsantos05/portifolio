@@ -33,16 +33,12 @@ export function MockupFrame({
         className,
       )}
     >
-      {/* barra da janela */}
-      <div className="flex items-center gap-1.5 border-b border-line-soft bg-ink-2/80 px-4 py-3">
-        <span className="h-2.5 w-2.5 rounded-full bg-danger/60" />
-        <span className="h-2.5 w-2.5 rounded-full bg-warning/60" />
-        <span className="h-2.5 w-2.5 rounded-full bg-success/60" />
-        {image.caption && (
-          <span className="ml-3 truncate font-mono text-[0.7rem] text-muted-2">
-            {image.caption}
-          </span>
-        )}
+      {/* barra da janela — sóbria, sem semáforo clichê */}
+      <div className="flex items-center gap-2.5 border-b border-line-soft bg-ink-2/80 px-4 py-2.5">
+        <span aria-hidden className="h-1.5 w-1.5 rounded-full bg-accent/70" />
+        <span className="truncate font-mono text-[0.7rem] text-muted-2">
+          {image.caption ?? image.alt}
+        </span>
       </div>
 
       <div className={cn('relative', aspect)}>

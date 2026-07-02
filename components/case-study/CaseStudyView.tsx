@@ -12,15 +12,8 @@ import { Button } from '@/components/ui/Button'
 import { IconFeature } from '@/components/ui/IconFeature'
 import { Reveal } from '@/components/motion/Reveal'
 import { MockupFrame } from './MockupFrame'
-import { stageLabel, getNextProject } from '@/content/projects'
+import { stageLabel, stageTone, getNextProject } from '@/content/projects'
 import type { CaseStudy } from '@/content/types'
-
-const stageTone = {
-  live: 'success',
-  prototype: 'accent',
-  private: 'neutral',
-  archived: 'neutral',
-} as const
 
 function NarrativeBlock({
   eyebrow,
@@ -31,7 +24,11 @@ function NarrativeBlock({
 }) {
   return (
     <Reveal className="flex flex-col gap-4">
-      <Eyebrow>{eyebrow}</Eyebrow>
+      {/* h2 real (com aparência de eyebrow) — mantém as seções na árvore de headings */}
+      <h2 className="flex items-center gap-3 font-sans text-eyebrow font-semibold uppercase text-accent">
+        <span aria-hidden className="h-px w-6 bg-accent/40" />
+        {eyebrow}
+      </h2>
       <p className="max-w-prose text-body-lg text-paper/90">{text}</p>
     </Reveal>
   )
