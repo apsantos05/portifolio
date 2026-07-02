@@ -58,6 +58,28 @@ export type TechCategory = {
   items: TechItem[]
 }
 
+// ── Garantias / prova de confiança (social proof sem depoimentos) ────
+export type Guarantee = {
+  title: string
+  description: string
+  icon: LucideIcon
+}
+
+// ── Lead magnets (materiais gratuitos — arquitetura pronta) ──────────
+export type LeadMagnet = {
+  slug: string
+  icon: LucideIcon
+  kind: 'checklist' | 'guia' | 'diagnostico' | 'auditoria'
+  title: string
+  description: string
+  /** chamada do botão */
+  cta: string
+  /** disponível agora? (false = "em breve") */
+  available: boolean
+  /** para onde leva quando disponível (rota ou âncora) */
+  href?: string
+}
+
 // ── Depoimentos (estrutura pronta; publicar só quando reais) ─────────
 export type Testimonial = {
   quote: string
