@@ -1,6 +1,7 @@
 'use server'
 
 import { newsletterSchema, type NewsletterState } from '@/lib/validation'
+import { addNewsletterContact } from '@/lib/email'
 
 /**
  * Server Action de captura de e-mail (newsletter / lead magnets).
@@ -23,11 +24,13 @@ export async function subscribe(
     return { status: 'error', message: parsed.error.issues[0]?.message ?? 'E-mail inválido.' }
   }
 
-  try {
-    // ⚑ TODO: adicionar o e-mail ao provedor de newsletter / CRM.
-    console.info('[newsletter] novo inscrito:', parsed.data.email)
-    return { status: 'success', message: 'Pronto! Você receberá os materiais em primeira mão.' }
-  } catch {
+  const result = await addNewsletterContact(parsed.data.email)
+
+  if (result.error) {
     return { status: 'error', message: 'Não foi possível inscrever agora. Tente novamente.' }
   }
+  if (result.skipped) {
+    console.info('[newsletter] inscrito (Resend não configurado):', parsed.data.email)
+  }
+  return { status: 'success', message: 'Pronto! Você receberá os materiais em primeira mão.' }
 }

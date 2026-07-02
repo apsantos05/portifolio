@@ -1,6 +1,7 @@
 'use server'
 
 import { contactSchema, type ContactState, type ContactFieldErrors } from '@/lib/validation'
+import { sendContactEmail } from '@/lib/email'
 
 /**
  * Server Action de contato (React 19 useActionState).
@@ -41,23 +42,30 @@ export async function submitContact(
     }
   }
 
-  try {
-    // ⚑ TODO: enviar e-mail (Resend) e/ou criar lead no CRM aqui.
-    //    Mantido como ponto de extensão único — a UI já está pronta.
-    console.info('[contato] nova mensagem:', {
-      name: parsed.data.name,
-      email: parsed.data.email,
-      projectType: parsed.data.projectType,
-    })
+  const result = await sendContactEmail({
+    name: parsed.data.name,
+    email: parsed.data.email,
+    company: parsed.data.company || undefined,
+    projectType: parsed.data.projectType,
+    message: parsed.data.message,
+  })
 
-    return {
-      status: 'success',
-      message: 'Mensagem enviada. Obrigado — respondo pessoalmente em breve.',
-    }
-  } catch {
+  // Falha real de envio (chave existe mas o provedor recusou) → avisa o usuário.
+  if (result.error) {
     return {
       status: 'error',
-      message: 'Algo deu errado ao enviar. Tente novamente ou use o e-mail direto.',
+      message: 'Não consegui enviar agora. Tente de novo ou me chame direto no e-mail.',
     }
+  }
+
+  // Enviado — ou ainda sem provedor configurado (skipped): registra e confirma,
+  // para não perder o lead enquanto a RESEND_API_KEY não estiver no ambiente.
+  if (result.skipped) {
+    console.info('[contato] lead recebido (Resend não configurado):', parsed.data.email)
+  }
+
+  return {
+    status: 'success',
+    message: 'Mensagem enviada. Obrigado — respondo pessoalmente em breve.',
   }
 }
