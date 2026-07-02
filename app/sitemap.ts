@@ -19,6 +19,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'monthly',
       priority: 0.6,
     },
+    {
+      url: `${site.url}/recursos/checklist-site`,
+      lastModified: now,
+      changeFrequency: 'yearly',
+      priority: 0.5,
+    },
   ]
 
   const projectRoutes: MetadataRoute.Sitemap = getAllProjects().map((p) => ({

@@ -25,8 +25,9 @@ export const leadMagnets: LeadMagnet[] = [
     title: 'Checklist: seu site está pronto para vender?',
     description:
       '20 pontos de performance, SEO, confiança e conversão que separam um site bonito de um site que traz clientes.',
-    cta: 'Baixar checklist',
-    available: false,
+    cta: 'Abrir checklist',
+    available: true,
+    href: '/recursos/checklist-site',
   },
   {
     slug: 'guia-contratar-dev',
