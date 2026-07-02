@@ -45,8 +45,8 @@ export function SectionHeader({
         {eyebrow && <Eyebrow index={index}>{eyebrow}</Eyebrow>}
         <Heading
           className={cn(
-            'mt-5 font-display font-bold tracking-[-0.02em] text-paper',
-            'text-[clamp(1.9rem,4vw,2.25rem)] leading-[1.15]',
+            'mt-5 font-display font-bold tracking-[-0.025em] text-paper [text-wrap:balance]',
+            'text-[clamp(2.15rem,5vw,3.25rem)] leading-[1.08]',
           )}
         >
           {title}
