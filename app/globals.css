@@ -214,6 +214,51 @@
   animation: scanY 4s cubic-bezier(0.4, 0, 0.2, 1) 3;
 }
 
+/* ── Esteira (marquee) infinita — animação por transform (GPU) ── */
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.marquee {
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+}
+.marquee__track {
+  display: flex;
+  width: max-content;
+  animation: marquee var(--marquee-duration, 40s) linear infinite;
+  animation-play-state: running;
+  will-change: transform;
+}
+.marquee[data-reverse='true'] .marquee__track {
+  animation-direction: reverse;
+}
+/* pausa no hover e no foco de teclado (acessibilidade) */
+.marquee:hover .marquee__track,
+.marquee:focus-within .marquee__track {
+  animation-play-state: paused;
+}
+
+/* Reduced motion: sem animação; vira faixa rolável (todo conteúdo alcançável) */
+@media (prefers-reduced-motion: reduce) {
+  .marquee {
+    overflow-x: auto;
+    -webkit-mask-image: none;
+    mask-image: none;
+  }
+  .marquee__track {
+    animation: none !important;
+    transform: none !important;
+    width: auto;
+  }
+}
+
 /* ── Motion base + acessibilidade ──────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
   *,
