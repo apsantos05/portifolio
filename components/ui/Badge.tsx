@@ -15,7 +15,7 @@ const tones: Record<Tone, string> = {
   success: 'bg-success/[0.12] text-success',
   warning: 'bg-warning/[0.12] text-warning',
   danger: 'bg-danger/[0.12] text-danger',
-  neutral: 'bg-[rgba(139,149,168,0.12)] text-muted',
+  neutral: 'bg-muted/[0.12] text-muted',
 }
 
 const dotColor: Record<Tone, string> = {

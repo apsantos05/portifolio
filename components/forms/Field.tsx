@@ -12,8 +12,8 @@ type BaseProps = {
 
 const controlBase =
   'w-full rounded-md border bg-ink-2 px-4 py-3 text-body-md text-paper placeholder:text-muted-2 ' +
-  'transition-colors duration-base focus-visible:outline-none focus-visible:border-line-active ' +
-  'focus-visible:shadow-[0_0_0_3px_rgba(132,163,218,0.20)]'
+  'transition-colors duration-base focus-visible:border-line-active ' +
+  'focus-visible:shadow-[var(--focus-ring)]'
 
 function useFieldIds(name: string, error?: string, hint?: string) {
   const id = useId()

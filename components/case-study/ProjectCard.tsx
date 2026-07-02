@@ -3,16 +3,9 @@ import { ArrowUpRight } from 'lucide-react'
 import { Badge } from '@/components/ui/Badge'
 import { Tag } from '@/components/ui/Tag'
 import { MockupFrame } from './MockupFrame'
-import { stageLabel } from '@/content/projects'
+import { stageLabel, stageTone } from '@/content/projects'
 import type { CaseStudy } from '@/content/types'
 import { cn } from '@/lib/cn'
-
-const stageTone = {
-  live: 'success',
-  prototype: 'accent',
-  private: 'neutral',
-  archived: 'neutral',
-} as const
 
 /** Card de projeto para grades. Reutilizado na Home e no índice /projetos. */
 export function ProjectCard({ project, priority }: { project: CaseStudy; priority?: boolean }) {

@@ -35,3 +35,11 @@ export const stageLabel: Record<CaseStage, string> = {
   private: 'Confidencial',
   archived: 'Arquivado',
 }
+
+/** Tom do badge por estágio (fonte única — evita duplicação entre componentes). */
+export const stageTone: Record<CaseStage, 'success' | 'accent' | 'neutral'> = {
+  live: 'success',
+  prototype: 'accent',
+  private: 'neutral',
+  archived: 'neutral',
+}

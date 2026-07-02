@@ -33,7 +33,7 @@ const variants: Record<Variant, string> = {
     'hover:-translate-y-0.5 active:translate-y-0',
   secondary:
     'border border-line-active/80 text-accent hover:bg-accent-subtle hover:border-line-active',
-  ghost: 'text-muted hover:text-paper hover:bg-[rgba(230,236,245,0.05)]',
+  ghost: 'text-muted hover:text-paper hover:bg-paper/5',
 }
 
 export function Button({
