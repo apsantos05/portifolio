@@ -78,7 +78,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html
       lang="pt-BR"
       className={`${interTight.variable} ${inter.variable} ${jetbrains.variable}`}
-      suppressHydrationWarning
     >
       <body className="min-h-dvh bg-ink text-paper antialiased">
         <a
