@@ -72,7 +72,9 @@ npx tsc --noEmit  # checagem de tipos
 - **Acessibilidade:** HTML semântico, foco visível, `aria-*`, skip-link, `prefers-reduced-motion`.
 - **Segurança:** CSP + HSTS + demais headers, validação com Zod, honeypot anti-spam.
 - **Conversão:** prova social sem depoimentos (garantias + código aberto), lead magnets
-  (diagnóstico gratuito + `/recursos`), captura por newsletter e CTAs em degraus.
+  (diagnóstico gratuito, checklist real em `/recursos/checklist-site`), captura por newsletter e CTAs em degraus.
+- **E-mail (Resend):** contato e newsletter com envio real via `lib/email.ts` — configure a
+  `RESEND_API_KEY` no `.env.local` (veja `.env.example`). Sem a chave, o site funciona e apenas registra os leads.
 
 ## ✦ Evolução
 

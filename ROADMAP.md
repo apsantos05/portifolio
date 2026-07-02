@@ -27,11 +27,12 @@ Fundação de produto premium, pronta e validada (type-check + build limpos).
 
 Alto impacto, baixo esforço. Maioria só depende de conteúdo/credenciais.
 
+- ✅ **Envio real de e-mails (Resend)** — contato e newsletter integrados (`lib/email.ts`); liga sozinho quando a `RESEND_API_KEY` for definida.
+- ✅ **Primeiro lead magnet real** — checklist "Seu site está pronto para vender?" em `/recursos/checklist-site`.
 - **[Bloqueador de galeria] Imagens reais:** capturar telas do AcertaVest (live) e mockups premium de Arrematex/AYHub — trocar placeholders sem tocar em componente.
 - **Foto profissional** em `public/arthur-santos.jpg` (entra no Hero/Sobre com tratamento duotone).
-- **Envio real do formulário** (Resend/e-mail) + newsletter conectada a um provedor (ESP).
 - **Domínio + e-mail próprios** e handles reais (LinkedIn, Instagram) — hoje ocultos por serem placeholders.
-- **Primeiro lead magnet real** (checklist em PDF) com download gated por e-mail.
+- **Configurar a chave Resend** (`.env.local`) + domínio verificado para o envio ir ao ar.
 - **Rate-limiting** nas server actions (contato/newsletter).
 - **Depoimentos reais** conforme os primeiros clientes chegam (estrutura já pronta).
 
