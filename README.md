@@ -75,6 +75,8 @@ npx tsc --noEmit  # checagem de tipos
   (diagnóstico gratuito, checklist real em `/recursos/checklist-site`), captura por newsletter e CTAs em degraus.
 - **E-mail (Resend):** contato e newsletter com envio real via `lib/email.ts` — configure a
   `RESEND_API_KEY` no `.env.local` (veja `.env.example`). Sem a chave, o site funciona e apenas registra os leads.
+- **Stacks:** seção em esteira infinita (`components/ui/Marquee.tsx`) com as tecnologias reais
+  extraídas dos repositórios do GitHub (`content/stacks.ts`) — CSS puro, acessível e com pausa no hover/foco.
 
 ## ✦ Evolução
 
