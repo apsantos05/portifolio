@@ -14,7 +14,8 @@ export function personJsonLd() {
     description: site.description,
     url: site.url,
     email: `mailto:${site.email}`,
-    sameAs: [site.social.github, site.social.linkedin, site.social.instagram],
+    ...(site.photo ? { image: `${site.url}${site.photo}` } : {}),
+    sameAs: [site.social.github, site.social.linkedin, site.social.instagram].filter(Boolean),
     knowsAbout: [
       'Next.js',
       'TypeScript',
@@ -51,7 +52,8 @@ export function breadcrumbJsonLd(items: { name: string; path: string }[]) {
   }
 }
 
-/** Dados estruturados de um projeto (estudo de caso). */
+/** Dados estruturados de um projeto (estudo de caso).
+ *  Projeto ao vivo com URL → WebApplication (rich result mais rico que CreativeWork). */
 export function creativeWorkJsonLd(project: {
   name: string
   tagline: string
@@ -59,14 +61,22 @@ export function creativeWorkJsonLd(project: {
   liveUrl?: string
   year: string
 }) {
-  return {
+  const base = {
     '@context': 'https://schema.org',
-    '@type': 'CreativeWork',
     name: project.name,
     description: project.tagline,
     url: `${site.url}/projetos/${project.slug}`,
-    ...(project.liveUrl ? { sameAs: project.liveUrl } : {}),
     dateCreated: project.year,
     author: { '@type': 'Person', name: site.name, url: site.url },
   }
+  if (project.liveUrl) {
+    return {
+      ...base,
+      '@type': 'WebApplication',
+      applicationCategory: 'BusinessApplication',
+      operatingSystem: 'Web',
+      sameAs: project.liveUrl,
+    }
+  }
+  return { ...base, '@type': 'CreativeWork' }
 }
