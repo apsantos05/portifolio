@@ -2,7 +2,7 @@
 
 > Documento de decisões técnicas. Guia como o projeto cresce sem reescrita.
 > Princípio-mestre: **cada decisão precisa fortalecer a marca "Arthur Santos" e sobreviver ao roadmap de longo prazo.**
-> Fonte de identidade: `D:\Projetos\brand` (SSOT). Fonte de estratégia: `../DISCOVERY.md`.
+> Fonte de identidade: `brand/` (espelho versionado da SSOT da marca, consumido pelo Tailwind).
 
 ---
 

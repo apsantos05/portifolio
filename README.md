@@ -20,10 +20,10 @@ Um produto digital premium: rápido, acessível e construído sobre um design sy
 Este não é um template de portfólio. É um produto construído de baixo para cima
 (*foundation-first*), 100% **data-driven** e pensado para escalar por anos.
 
-- **Estratégia** documentada em [`../DISCOVERY.md`](../DISCOVERY.md)
 - **Arquitetura** documentada em [`ARCHITECTURE.md`](ARCHITECTURE.md)
-- **Identidade visual** consumida da fonte oficial da marca em [`../brand`](../brand)
-  (Single Source of Truth — tokens nunca são recriados, apenas consumidos)
+- **Identidade visual** consumida de [`brand/`](brand) — espelho versionado da SSOT
+  da marca (tokens nunca recriados, apenas consumidos pelo `tailwind.config.ts`)
+- Estratégia de marca definida em um documento interno de discovery (não versionado)
 
 ### Conceito visual
 
