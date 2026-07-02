@@ -5,7 +5,7 @@ import { Projects } from '@/components/sections/Projects'
 import { Guarantees } from '@/components/sections/Guarantees'
 import { Testimonials } from '@/components/sections/Testimonials'
 import { Process } from '@/components/sections/Process'
-import { Technologies } from '@/components/sections/Technologies'
+import { Stacks } from '@/components/sections/Stacks'
 import { Faq } from '@/components/sections/Faq'
 import { LeadMagnet } from '@/components/sections/LeadMagnet'
 import { Contact } from '@/components/sections/Contact'
@@ -25,7 +25,7 @@ export default function HomePage() {
       <Guarantees />
       <Testimonials />
       <Process />
-      <Technologies />
+      <Stacks />
       <Faq />
       <LeadMagnet />
       <Contact />
