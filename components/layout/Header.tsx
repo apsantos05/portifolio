@@ -2,12 +2,16 @@
 
 import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
-import { Menu, X } from 'lucide-react'
+import { Menu, X, MessageCircle } from 'lucide-react'
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion'
-import { site } from '@/lib/site'
-import { navItems, primaryCta } from '@/content/navigation'
+import { site, getWhatsappUrl, hasWhatsapp } from '@/lib/site'
+import { navItems } from '@/content/navigation'
 import { Wordmark } from '@/components/brand/Wordmark'
 import { cn } from '@/lib/cn'
+
+const waProps = hasWhatsapp()
+  ? { target: '_blank', rel: 'noopener noreferrer' as const }
+  : {}
 
 /** Extrai o id da âncora de um href tipo "/#sobre" → "sobre". */
 const anchorId = (href: string) => href.split('#')[1] ?? ''
@@ -110,12 +114,14 @@ export function Header() {
         </ul>
 
         <div className="hidden md:block">
-          <Link
-            href={primaryCta.href}
+          <a
+            href={getWhatsappUrl()}
+            {...waProps}
             className="group inline-flex items-center gap-2 rounded-pill bg-gradient-primary px-5 py-2.5 text-sm font-semibold text-paper shadow-glow transition-transform duration-base hover:-translate-y-0.5"
           >
-            {primaryCta.label}
-          </Link>
+            <MessageCircle className="h-4 w-4" strokeWidth={2} />
+            Conversar no WhatsApp
+          </a>
         </div>
 
         {/* Toggle mobile */}
@@ -178,13 +184,15 @@ export function Header() {
                 }}
                 className="mt-8"
               >
-                <Link
-                  href={primaryCta.href}
+                <a
+                  href={getWhatsappUrl()}
+                  {...waProps}
                   onClick={() => setOpen(false)}
-                  className="inline-flex rounded-pill bg-gradient-primary px-7 py-3.5 text-base font-semibold text-paper shadow-glow"
+                  className="inline-flex items-center gap-2 rounded-pill bg-gradient-primary px-7 py-3.5 text-base font-semibold text-paper shadow-glow"
                 >
-                  {primaryCta.label}
-                </Link>
+                  <MessageCircle className="h-5 w-5" strokeWidth={2} />
+                  Conversar no WhatsApp
+                </a>
               </motion.li>
             </motion.ul>
           </motion.div>
