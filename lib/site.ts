@@ -15,7 +15,7 @@ export const site = {
     'Arthur Santos é desenvolvedor full stack. Sites, sistemas e aplicações web sob medida — do problema à solução que realmente funciona.',
   // ⚑ Fotos: salvar em public/ e apontar aqui. Enquanto null, os frames mostram
   //    um placeholder premium (sem blueprint). A troca é só de caminho — 1 linha.
-  photo: null as string | null, // Hero (Início) — ex.: '/arthur-santos.jpg'
+  photo: '/arthur-santos.jpg' as string | null, // Hero (Início)
   photoAbout: null as string | null, // Sobre — ex.: '/arthur-santos-2.jpg'
   email: 'contato@arthursantos.dev', // ⚑ TODO: e-mail real
   // ⚑ WhatsApp: DDI+DDD+número, só dígitos. Ex.: '5599999999999'. Vazio = botão cai no contato.
