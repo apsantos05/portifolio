@@ -2,20 +2,21 @@
 
 import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
-import { Menu, X, MessageCircle } from 'lucide-react'
+import { Menu, X } from 'lucide-react'
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion'
-import { site, getWhatsappUrl, hasWhatsapp } from '@/lib/site'
 import { navItems } from '@/content/navigation'
-import { Wordmark } from '@/components/brand/Wordmark'
 import { cn } from '@/lib/cn'
-
-const waProps = hasWhatsapp()
-  ? { target: '_blank', rel: 'noopener noreferrer' as const }
-  : {}
 
 /** Extrai o id da âncora de um href tipo "/#sobre" → "sobre". */
 const anchorId = (href: string) => href.split('#')[1] ?? ''
 
+/**
+ * Header flutuante premium (pill glassmorphism, largura automática, centralizado).
+ * - Desktop: menu horizontal com indicador de seção ativa (pill deslizante).
+ * - Mobile: gatilho hambúrguer + overlay full-screen com a mesma identidade.
+ * - Seção ativa via IntersectionObserver (sem libs externas).
+ * Preserva tokens, tipografia e animações do resto da página.
+ */
 export function Header() {
   const [scrolled, setScrolled] = useState(false)
   const [open, setOpen] = useState(false)
@@ -23,6 +24,7 @@ export function Header() {
   const toggleRef = useRef<HTMLButtonElement>(null)
   const reduce = useReducedMotion()
 
+  // Estado de scroll (compacta a barra e intensifica o vidro)
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 12)
     onScroll()
@@ -51,7 +53,7 @@ export function Header() {
     return () => observer.disconnect()
   }, [])
 
-  // Menu mobile: trava scroll, fecha no Escape e devolve o foco ao botão
+  // Menu mobile: trava o scroll, fecha no Escape e devolve o foco ao gatilho
   useEffect(() => {
     if (!open) return
     document.body.style.overflow = 'hidden'
@@ -69,24 +71,25 @@ export function Header() {
   }, [open])
 
   return (
-    <header
-      className={cn(
-        'fixed inset-x-0 top-0 z-sticky transition-all duration-base ease-standard',
-        scrolled || open
-          ? 'border-b border-line-soft bg-ink/80 backdrop-blur-lg'
-          : 'border-b border-transparent bg-transparent',
-      )}
-    >
+    <header className="pointer-events-none fixed inset-x-0 top-3 z-sticky flex justify-center px-4 sm:top-4">
       <nav
         aria-label="Navegação principal"
-        className="mx-auto flex h-16 w-full max-w-[1200px] items-center justify-between px-6 sm:px-8 lg:px-16"
+        className={cn(
+          'pointer-events-auto relative z-10 rounded-full border border-line-soft',
+          'bg-ink/60 backdrop-blur-xl transition-all duration-[400ms] ease-standard',
+          'supports-[backdrop-filter]:bg-ink/50',
+          scrolled
+            ? 'shadow-lg backdrop-blur-2xl supports-[backdrop-filter]:bg-ink/70'
+            : 'shadow-md',
+        )}
       >
-        <Link href="/" aria-label={`${site.name} — início`} className="relative z-10 rounded-md">
-          <Wordmark />
-        </Link>
-
-        {/* Navegação desktop */}
-        <ul className="hidden items-center gap-1 md:flex">
+        {/* Desktop — menu horizontal com pill de seção ativa */}
+        <ul
+          className={cn(
+            'hidden items-center gap-0.5 transition-all duration-[400ms] ease-standard md:flex',
+            scrolled ? 'p-1' : 'p-1.5',
+          )}
+        >
           {navItems.map((item) => {
             const isActive = active === anchorId(item.href)
             return (
@@ -95,36 +98,31 @@ export function Header() {
                   href={item.href}
                   aria-current={isActive ? 'location' : undefined}
                   className={cn(
-                    'relative rounded-md px-3.5 py-2 text-sm font-medium transition-colors duration-base',
+                    'relative block rounded-full px-3.5 text-sm font-medium transition-colors duration-base lg:px-4',
+                    scrolled ? 'py-1.5' : 'py-2',
                     isActive ? 'text-paper' : 'text-muted hover:text-paper',
                   )}
                 >
-                  {item.label}
                   {isActive && (
                     <motion.span
-                      layoutId="nav-active"
-                      className="absolute inset-x-3.5 -bottom-0.5 h-px bg-accent"
-                      transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+                      layoutId="nav-active-pill"
+                      aria-hidden
+                      className="absolute inset-0 rounded-full border border-line-soft bg-accent-subtle"
+                      transition={
+                        reduce
+                          ? { duration: 0 }
+                          : { type: 'spring', stiffness: 400, damping: 34 }
+                      }
                     />
                   )}
+                  <span className="relative">{item.label}</span>
                 </Link>
               </li>
             )
           })}
         </ul>
 
-        <div className="hidden md:block">
-          <a
-            href={getWhatsappUrl()}
-            {...waProps}
-            className="group inline-flex items-center gap-2 rounded-pill bg-gradient-primary px-5 py-2.5 text-sm font-semibold text-paper shadow-glow transition-transform duration-base hover:-translate-y-0.5"
-          >
-            <MessageCircle className="h-4 w-4" strokeWidth={2} />
-            Conversar no WhatsApp
-          </a>
-        </div>
-
-        {/* Toggle mobile */}
+        {/* Mobile — gatilho hambúrguer dentro do mesmo pill */}
         <button
           ref={toggleRef}
           type="button"
@@ -132,9 +130,13 @@ export function Header() {
           aria-expanded={open}
           aria-controls="menu-mobile"
           aria-label={open ? 'Fechar menu' : 'Abrir menu'}
-          className="relative z-10 grid h-11 w-11 place-items-center rounded-md border border-line text-paper md:hidden"
+          className={cn(
+            'flex items-center gap-2 rounded-full px-5 text-sm font-medium text-paper transition-all duration-[400ms] ease-standard md:hidden',
+            scrolled ? 'py-2.5' : 'py-3',
+          )}
         >
           {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+          <span>{open ? 'Fechar' : 'Menu'}</span>
         </button>
       </nav>
 
@@ -143,57 +145,54 @@ export function Header() {
         {open && (
           <motion.div
             id="menu-mobile"
-            initial={reduce ? { opacity: 0 } : { opacity: 0 }}
+            initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.25 }}
-            className="fixed inset-0 top-16 z-0 origin-top bg-ink/95 backdrop-blur-xl md:hidden"
+            className="pointer-events-auto fixed inset-0 z-0 bg-ink/95 backdrop-blur-xl md:hidden"
           >
-            <div aria-hidden className="pointer-events-none absolute inset-0 bg-blueprint opacity-40 mask-fade-y" />
             <motion.ul
-              className="relative flex flex-col gap-1 px-6 pt-8"
+              className="flex flex-col gap-1 px-8 pt-28"
               initial="hidden"
               animate="show"
-              variants={{ show: { transition: { staggerChildren: reduce ? 0 : 0.06, delayChildren: 0.05 } } }}
+              variants={{
+                show: { transition: { staggerChildren: reduce ? 0 : 0.06, delayChildren: 0.05 } },
+              }}
             >
-              {navItems.map((item, i) => (
-                <motion.li
-                  key={item.href}
-                  variants={{
-                    hidden: reduce ? { opacity: 0 } : { opacity: 0, y: 12 },
-                    show: { opacity: 1, y: 0, transition: { duration: 0.4, ease: [0.16, 1, 0.3, 1] } },
-                  }}
-                  className="border-b border-line-soft"
-                >
-                  <Link
-                    href={item.href}
-                    onClick={() => setOpen(false)}
-                    className="flex items-baseline gap-4 py-5"
+              {navItems.map((item, i) => {
+                const isActive = active === anchorId(item.href)
+                return (
+                  <motion.li
+                    key={item.href}
+                    variants={{
+                      hidden: reduce ? { opacity: 0 } : { opacity: 0, y: 12 },
+                      show: {
+                        opacity: 1,
+                        y: 0,
+                        transition: { duration: 0.4, ease: [0.16, 1, 0.3, 1] },
+                      },
+                    }}
+                    className="border-b border-line-soft"
                   >
-                    <span className="font-mono text-xs text-muted-2">0{i + 1}</span>
-                    <span className="font-display text-3xl font-bold tracking-tight text-paper">
-                      {item.label}
-                    </span>
-                  </Link>
-                </motion.li>
-              ))}
-              <motion.li
-                variants={{
-                  hidden: reduce ? { opacity: 0 } : { opacity: 0, y: 12 },
-                  show: { opacity: 1, y: 0, transition: { duration: 0.4, ease: [0.16, 1, 0.3, 1] } },
-                }}
-                className="mt-8"
-              >
-                <a
-                  href={getWhatsappUrl()}
-                  {...waProps}
-                  onClick={() => setOpen(false)}
-                  className="inline-flex items-center gap-2 rounded-pill bg-gradient-primary px-7 py-3.5 text-base font-semibold text-paper shadow-glow"
-                >
-                  <MessageCircle className="h-5 w-5" strokeWidth={2} />
-                  Conversar no WhatsApp
-                </a>
-              </motion.li>
+                    <Link
+                      href={item.href}
+                      onClick={() => setOpen(false)}
+                      aria-current={isActive ? 'location' : undefined}
+                      className="flex items-baseline gap-4 py-5"
+                    >
+                      <span className="font-mono text-xs text-muted-2">0{i + 1}</span>
+                      <span
+                        className={cn(
+                          'font-display text-3xl font-bold tracking-tight transition-colors',
+                          isActive ? 'text-accent' : 'text-paper',
+                        )}
+                      >
+                        {item.label}
+                      </span>
+                    </Link>
+                  </motion.li>
+                )
+              })}
             </motion.ul>
           </motion.div>
         )}
