@@ -25,6 +25,13 @@ Este não é um template de portfólio. É um produto construído de baixo para 
 - **Identidade visual** consumida da fonte oficial da marca em [`../brand`](../brand)
   (Single Source of Truth — tokens nunca são recriados, apenas consumidos)
 
+### Conceito visual
+
+O momento-assinatura é o conceito **"blueprint → produto"**: no hero, uma planta
+técnica se desenha (animação CSS pura, sem JS no LCP) e materializa uma interface —
+tradução visual da promessa da marca. Motion com propósito, tipografia editorial,
+respiro amplo com bolsões de densidade. Nada de efeito sem função.
+
 ## ✦ Stack
 
 | Camada | Tecnologia |
