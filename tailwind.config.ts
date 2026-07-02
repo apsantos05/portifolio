@@ -1,8 +1,8 @@
 import type { Config } from 'tailwindcss'
 // ── Single Source of Truth ────────────────────────────────────────────
-// O tema é CONSUMIDO da pasta oficial da marca (D:\Projetos\brand).
-// Nada é recriado aqui: apenas estendemos o Tailwind com os tokens da SSOT.
-import { brandTheme } from '../brand/TAILWIND_THEME'
+// O tema é CONSUMIDO de ./brand (espelho versionado da SSOT D:\Projetos\brand),
+// dentro do repositório para o build funcionar na Vercel. Nada é recriado aqui.
+import { brandTheme } from './brand/TAILWIND_THEME'
 
 const config: Config = {
   darkMode: 'class',
