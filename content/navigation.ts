@@ -9,5 +9,11 @@ export const navItems: NavItem[] = [
   { label: 'FAQ', href: '/#faq' },
 ]
 
+/** Links do rodapé — nav principal + páginas de crescimento (recursos). */
+export const footerLinks: NavItem[] = [
+  ...navItems,
+  { label: 'Recursos', href: '/recursos' },
+]
+
 /** CTA principal reutilizado no header e em seções. */
 export const primaryCta = { label: 'Iniciar projeto', href: '/#contato' }

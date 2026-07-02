@@ -3,7 +3,7 @@ import { Github, Linkedin, Instagram, ArrowUpRight } from 'lucide-react'
 import { Container } from '@/components/layout/Container'
 import { Wordmark } from '@/components/brand/Wordmark'
 import { site } from '@/lib/site'
-import { navItems } from '@/content/navigation'
+import { footerLinks } from '@/content/navigation'
 
 const socials = [
   { label: 'GitHub', href: site.social.github, Icon: Github },
@@ -36,7 +36,7 @@ export function Footer() {
           <Wordmark />
 
           <nav aria-label="Rodapé" className="flex flex-wrap gap-x-8 gap-y-2">
-            {navItems.map((item) => (
+            {footerLinks.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
