@@ -90,4 +90,18 @@ Cada projeto é só um objeto de dados (`content/projects/*.ts`) que satisfaz o 
 
 ---
 
+## 6. Camada de aquisição (CRO)
+
+O site é uma **máquina de aquisição**, não uma vitrine estática. Peças dedicadas:
+
+- **Prova social sem depoimentos:** `content/trust.ts` → seção `Guarantees` (compromissos + transparência técnica com link ao código aberto). Nunca métrica/depoimento inventado.
+- **Lead magnets:** `content/resources.ts` (tipo `LeadMagnet`, `available: boolean`) → seção `LeadMagnet` (oferta de baixo atrito) + página `(site)/recursos`. Adicionar material = adicionar um objeto.
+- **Captura de leads:** `components/forms/NewsletterForm` + `app/actions/newsletter.ts` (zod + honeypot; ponto de extensão único para o ESP/CRM).
+- **CTAs em degraus:** baixo atrito (diagnóstico gratuito) → alto atrito (formulário de projeto).
+- **Depoimentos:** `Testimonials` renderiza só quando houver reais (`content/testimonials.ts`).
+
+Tudo pronto para escalar para blog, materiais e área do cliente sem reescrever componentes (ver [`ROADMAP.md`](ROADMAP.md)).
+
+---
+
 *Este documento evolui com o projeto. Toda decisão arquitetural relevante é registrada aqui.*

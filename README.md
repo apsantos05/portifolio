@@ -71,6 +71,12 @@ npx tsc --noEmit  # checagem de tipos
 - **SEO:** metadata por página, Open Graph, JSON-LD (Person, WebSite, CreativeWork, FAQPage, Breadcrumb), sitemap e robots.
 - **Acessibilidade:** HTML semântico, foco visível, `aria-*`, skip-link, `prefers-reduced-motion`.
 - **Segurança:** CSP + HSTS + demais headers, validação com Zod, honeypot anti-spam.
+- **Conversão:** prova social sem depoimentos (garantias + código aberto), lead magnets
+  (diagnóstico gratuito + `/recursos`), captura por newsletter e CTAs em degraus.
+
+## ✦ Evolução
+
+Roadmap versionado em [`ROADMAP.md`](ROADMAP.md) — prioriza sempre marca e conversão.
 
 ## ✦ Status
 
