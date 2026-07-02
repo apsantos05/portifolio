@@ -71,6 +71,8 @@ npx tsc --noEmit  # checagem de tipos
 - **SEO:** metadata por página, Open Graph, JSON-LD (Person, WebSite, CreativeWork, FAQPage, Breadcrumb), sitemap e robots.
 - **Acessibilidade:** HTML semântico, foco visível, `aria-*`, skip-link, `prefers-reduced-motion`.
 - **Segurança:** CSP + HSTS + demais headers, validação com Zod, honeypot anti-spam.
+- **Marca pessoal:** Hero "Início" centrado no nome + foto (`components/ui/PhotoFrame.tsx`),
+  Sobre "Minha história" com retrato — CTA principal direto no **WhatsApp** (`lib/site.ts`).
 - **Conversão:** prova social sem depoimentos (garantias + código aberto), lead magnets
   (diagnóstico gratuito, checklist real em `/recursos/checklist-site`), captura por newsletter e CTAs em degraus.
 - **E-mail (Resend):** contato e newsletter com envio real via `lib/email.ts` — configure a
@@ -84,8 +86,9 @@ Roadmap versionado em [`ROADMAP.md`](ROADMAP.md) — prioriza sempre marca e con
 
 ## ✦ Status
 
-Projeto em construção ativa. Ativos visuais (foto, prints reais) e integrações
-(e-mail/CRM do formulário, domínio) em finalização.
+Projeto em construção ativa. Pendências de ativos/config para trocar sem mexer em componentes:
+foto do Hero (`site.photo`) e do Sobre (`site.photoAbout`), número do **WhatsApp** (`site.whatsapp`),
+prints dos projetos, `RESEND_API_KEY` e domínio.
 
 ---
 
