@@ -33,3 +33,14 @@ export type ContactState = {
   message?: string
   errors?: ContactFieldErrors
 }
+
+/** Newsletter / captura de lead — mesmo schema compartilhado cliente/servidor. */
+export const newsletterSchema = z.object({
+  email: z.string().trim().email('Informe um e-mail válido.'),
+  website: z.literal('').optional(), // honeypot
+})
+
+export type NewsletterState = {
+  status: 'idle' | 'success' | 'error'
+  message?: string
+}
