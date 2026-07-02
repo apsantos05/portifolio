@@ -20,9 +20,9 @@ export default function HomePage() {
       <About />
       <Services />
       <Projects />
+      <Testimonials />
       <Process />
       <Technologies />
-      <Testimonials />
       <Faq />
       <Contact />
     </>

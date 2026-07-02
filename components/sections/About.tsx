@@ -7,7 +7,7 @@ import { about } from '@/content/about'
 /** Sobre — história do Arthur. 100% data-driven a partir de content/about.ts. */
 export function About() {
   return (
-    <Section id="sobre" elevated aria-label="Sobre Arthur Santos">
+    <Section id="sobre" elevated spacious aria-label="Sobre Arthur Santos">
       <div className="grid gap-14 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20">
         <SectionHeader
           index="02"

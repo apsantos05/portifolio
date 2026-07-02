@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { Github, Linkedin, Instagram, Mail } from 'lucide-react'
+import { Github, Linkedin, Instagram, ArrowUpRight } from 'lucide-react'
 import { Container } from '@/components/layout/Container'
 import { Wordmark } from '@/components/brand/Wordmark'
 import { site } from '@/lib/site'
@@ -12,44 +12,43 @@ const socials = [
 ].filter((s) => Boolean(s.href))
 
 export function Footer() {
-  const year = 2026 // ano-base do projeto (evita mismatch de hidratação)
-
   return (
-    <footer className="relative border-t border-line-soft bg-ink-2">
+    <footer className="relative overflow-hidden border-t border-line-soft bg-ink-2">
       <div aria-hidden className="pointer-events-none absolute inset-0 glow-alt opacity-60" />
-      <Container className="relative py-16">
-        <div className="flex flex-col justify-between gap-10 md:flex-row md:items-start">
-          <div className="max-w-sm">
-            <Wordmark />
-            <p className="mt-5 text-body-sm text-muted">{site.tagline}</p>
-          </div>
+      <div aria-hidden className="pointer-events-none absolute inset-0 bg-blueprint opacity-30 mask-fade-y" />
 
-          <nav aria-label="Rodapé" className="flex flex-col gap-3">
-            <p className="font-mono text-[0.7rem] uppercase tracking-[0.2em] text-muted-2">
-              Navegação
-            </p>
+      <Container className="relative py-20">
+        {/* Assinatura editorial + e-mail como gesto tipográfico */}
+        <p className="max-w-3xl font-display text-[clamp(1.6rem,4.5vw,2.75rem)] font-bold leading-[1.1] tracking-[-0.02em] text-paper [text-wrap:balance]">
+          Transformo a história do seu negócio em software que{' '}
+          <span className="text-accent">funciona</span>.
+        </p>
+        <a
+          href={`mailto:${site.email}`}
+          className="group mt-8 inline-flex items-center gap-3 font-display text-[clamp(1.25rem,3vw,1.75rem)] font-semibold text-paper transition-colors hover:text-accent"
+        >
+          {site.email}
+          <ArrowUpRight className="h-6 w-6 transition-transform duration-base group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+        </a>
+
+        {/* Navegação + redes */}
+        <div className="mt-16 flex flex-col justify-between gap-10 border-t border-line-soft pt-12 md:flex-row">
+          <Wordmark />
+
+          <nav aria-label="Rodapé" className="flex flex-wrap gap-x-8 gap-y-2">
             {navItems.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
-                className="text-sm text-muted transition-colors hover:text-paper"
+                className="inline-block py-2 text-sm text-muted transition-colors hover:text-paper"
               >
                 {item.label}
               </Link>
             ))}
           </nav>
 
-          <div className="flex flex-col gap-3">
-            <p className="font-mono text-[0.7rem] uppercase tracking-[0.2em] text-muted-2">
-              Contato
-            </p>
-            <a
-              href={`mailto:${site.email}`}
-              className="inline-flex items-center gap-2 text-sm text-muted transition-colors hover:text-paper"
-            >
-              <Mail className="h-4 w-4" /> {site.email}
-            </a>
-            <div className="mt-2 flex gap-2">
+          {socials.length > 0 && (
+            <div className="flex gap-2">
               {socials.map(({ label, href, Icon }) => (
                 <a
                   key={label}
@@ -57,20 +56,19 @@ export function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={label}
-                  className="grid h-10 w-10 place-items-center rounded-md border border-line text-muted transition-colors hover:border-line-active hover:text-accent"
+                  className="grid h-11 w-11 place-items-center rounded-lg border border-line text-muted transition-colors hover:border-line-active hover:text-accent"
                 >
                   <Icon className="h-4 w-4" />
                 </a>
               ))}
             </div>
-          </div>
+          )}
         </div>
 
-        <div className="mt-12 flex flex-col items-start justify-between gap-3 border-t border-line-soft pt-6 md:flex-row md:items-center">
-          <p className="font-mono text-xs text-muted-2">
-            © {year} {site.name}. Feito à mão com Next.js.
-          </p>
-          <p className="font-mono text-xs text-muted-2">{site.location}</p>
+        {/* Crédito sóbrio (sem clichê) */}
+        <div className="mt-12 flex flex-col gap-2 border-t border-line-soft pt-6 font-mono text-xs text-muted-2 sm:flex-row sm:items-center sm:justify-between">
+          <span>© 2026 {site.name} — {site.role}</span>
+          <span>Projetado e desenvolvido por Arthur Santos · {site.location}</span>
         </div>
       </Container>
     </footer>

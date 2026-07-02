@@ -14,7 +14,7 @@ const socials = [
 /** Contato — CTA final forte + ContactForm plugado. */
 export function Contact() {
   return (
-    <Section id="contato" aria-label="Contato">
+    <Section id="contato" spacious aria-label="Contato">
       <div className="relative overflow-hidden rounded-2xl border border-line-active/60 bg-panel-2 p-8 shadow-glow sm:p-12 lg:p-16">
         <div aria-hidden className="pointer-events-none absolute inset-0 bg-blueprint opacity-40 mask-fade-y" />
         <div aria-hidden className="pointer-events-none absolute inset-0 glow-hero opacity-70" />
