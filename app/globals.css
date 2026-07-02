@@ -76,10 +76,12 @@
     color: var(--white);
   }
 
-  /* Acessibilidade: foco visível e consistente */
+  /* Acessibilidade: foco visível e consistente.
+     Usa OUTLINE (não box-shadow) — outline nunca é recortado por overflow-hidden,
+     garantindo o anel de foco em cards e elementos com clipping. */
   :focus-visible {
-    outline: none;
-    box-shadow: var(--focus-ring);
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
     border-radius: 4px;
   }
 
@@ -167,6 +169,49 @@
       transparent
     );
   }
+}
+
+/* ── Hero: entrada + desenho do blueprint (CSS puro → sem JS no LCP) ── */
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+@keyframes scanY {
+  0% {
+    top: 2%;
+    opacity: 0;
+  }
+  25% {
+    opacity: 0.7;
+  }
+  100% {
+    top: 98%;
+    opacity: 0;
+  }
+}
+
+.animate-rise {
+  opacity: 0;
+  animation: rise 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+.bp-draw {
+  stroke-dasharray: 1400;
+  stroke-dashoffset: 1400;
+  animation: draw 2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+.bp-scan {
+  animation: scanY 4s cubic-bezier(0.4, 0, 0.2, 1) 3;
 }
 
 /* ── Motion base + acessibilidade ──────────────────────────────── */
