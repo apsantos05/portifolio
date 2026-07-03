@@ -4,6 +4,10 @@ import { Button } from '@/components/ui/Button'
 import { PhotoFrame } from '@/components/ui/PhotoFrame'
 import { site, getWhatsappUrl, hasWhatsapp } from '@/lib/site'
 
+/** Mensagem pré-preenchida do CTA principal (solicitação de orçamento). */
+const WHATSAPP_MESSAGE =
+  'Olá, Arthur! Vi seu portfólio e gostaria de solicitar um orçamento para um projeto. Quando puder, podemos conversar?'
+
 /**
  * Início — Hero de marca pessoal (Server Component, entrada por CSS puro).
  * O nome é o principal elemento visual, ao lado da foto. Sem blueprint/grid/wireframe.
@@ -58,7 +62,7 @@ export function Hero() {
               className="animate-rise mt-9 flex flex-wrap items-center gap-3"
               style={{ animationDelay: '380ms' }}
             >
-              <Button href={getWhatsappUrl()} external={hasWhatsapp()} size="lg" withArrow={false}>
+              <Button href={getWhatsappUrl(WHATSAPP_MESSAGE)} external={hasWhatsapp()} size="lg" withArrow={false}>
                 <span className="inline-flex items-center gap-2">
                   <MessageCircle className="h-5 w-5" strokeWidth={2} />
                   Conversar no WhatsApp

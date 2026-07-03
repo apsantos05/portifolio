@@ -18,8 +18,8 @@ export const site = {
   photo: '/arthur-santos.jpg' as string | null, // Hero (Início)
   photoAbout: null as string | null, // Sobre — ex.: '/arthur-santos-2.jpg'
   email: 'contato@arthursantos.dev', // ⚑ TODO: e-mail real
-  // ⚑ WhatsApp: DDI+DDD+número, só dígitos. Ex.: '5599999999999'. Vazio = botão cai no contato.
-  whatsapp: '',
+  // WhatsApp: DDI+DDD+número, só dígitos. +55 (17) 99230-1681
+  whatsapp: '5517992301681',
   location: 'Brasil',
   social: {
     github: 'https://github.com/apsantos05',
