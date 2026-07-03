@@ -20,12 +20,12 @@ export default function HomePage() {
     <>
       <Hero />
       <About />
+      <Stacks />
       <Services />
       <Projects />
       <Guarantees />
       <Testimonials />
       <Process />
-      <Stacks />
       <Faq />
       <LeadMagnet />
       <Contact />

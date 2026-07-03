@@ -17,24 +17,18 @@ function StackChip({ stack }: { stack: Stack }) {
 }
 
 /**
- * Stacks — esteira infinita com as tecnologias REAIS dos repositórios (content/stacks.ts).
- * Substitui a antiga seção "Tecnologias" para evitar duplicação, mantendo o
- * enquadramento "por propósito" no cabeçalho. Integra o conceito "blueprint → produto".
+ * Stacks — seção logo após "Sobre". Esteira infinita dupla (sentidos opostos) com as
+ * tecnologias REAIS dos repositórios (content/stacks.ts). Data-driven, sem nada hardcoded.
  */
 export function Stacks() {
   const rows = stacksInRows(2)
 
   return (
-    <Section id="stacks" elevated aria-label="Stacks e tecnologias" className="overflow-hidden">
+    <Section id="stacks" aria-label="Stacks e tecnologias" className="overflow-hidden">
       <SectionHeader
-        index="06"
-        eyebrow="Stacks"
-        title={
-          <>
-            Ferramentas de verdade, escolhidas por <span className="text-accent">propósito</span>.
-          </>
-        }
-        description="Estas são as tecnologias que realmente uso — extraídas dos meus repositórios no GitHub, não de uma lista de desejos."
+        eyebrow="Tecnologias"
+        title="Stacks"
+        description="As tecnologias são apenas ferramentas. Escolho cada uma delas pensando em performance, escalabilidade, segurança e facilidade de manutenção."
       />
 
       <Reveal className="relative mt-14 flex flex-col gap-4">
