@@ -4,10 +4,12 @@ import type { NavItem } from './types'
 export const navItems: NavItem[] = [
   { label: 'Início', href: '/#inicio' },
   { label: 'Sobre', href: '/#sobre' },
+  { label: 'Stacks', href: '/#stacks' },
   { label: 'Serviços', href: '/#servicos' },
   { label: 'Projetos', href: '/#projetos' },
   { label: 'Processo', href: '/#processo' },
   { label: 'FAQ', href: '/#faq' },
+  { label: 'Contato', href: '/#contato' },
 ]
 
 /** Links do rodapé — nav principal + páginas de crescimento (recursos). */
