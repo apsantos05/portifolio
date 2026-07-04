@@ -86,7 +86,7 @@ export function Header() {
         {/* Desktop — menu horizontal com pill de seção ativa */}
         <ul
           className={cn(
-            'hidden items-center gap-0.5 transition-all duration-[400ms] ease-standard md:flex',
+            'hidden items-center gap-0.5 transition-all duration-[400ms] ease-standard lg:flex',
             scrolled ? 'p-1' : 'p-1.5',
           )}
         >
@@ -131,7 +131,7 @@ export function Header() {
           aria-controls="menu-mobile"
           aria-label={open ? 'Fechar menu' : 'Abrir menu'}
           className={cn(
-            'flex items-center gap-2 rounded-full px-5 text-sm font-medium text-paper transition-all duration-[400ms] ease-standard md:hidden',
+            'flex items-center gap-2 rounded-full px-5 text-sm font-medium text-paper transition-all duration-[400ms] ease-standard lg:hidden',
             scrolled ? 'py-2.5' : 'py-3',
           )}
         >
@@ -149,7 +149,7 @@ export function Header() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.25 }}
-            className="pointer-events-auto fixed inset-0 z-0 bg-ink/95 backdrop-blur-xl md:hidden"
+            className="pointer-events-auto fixed inset-0 z-0 bg-ink/95 backdrop-blur-xl lg:hidden"
           >
             <motion.ul
               className="flex flex-col gap-1 px-8 pt-28"

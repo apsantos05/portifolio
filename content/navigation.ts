@@ -7,6 +7,7 @@ export const navItems: NavItem[] = [
   { label: 'Stacks', href: '/#stacks' },
   { label: 'Serviços', href: '/#servicos' },
   { label: 'Projetos', href: '/#projetos' },
+  { label: 'Além do Código', href: '/#alem-do-codigo' },
   { label: 'Processo', href: '/#processo' },
   { label: 'FAQ', href: '/#faq' },
   { label: 'Contato', href: '/#contato' },
