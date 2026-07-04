@@ -18,8 +18,7 @@ export const site = {
   photo: '/arthur-santos.png' as string | null, // Hero (Início)
   photoAbout: '/foto-sobre.png' as string | null, // Sobre
   email: 'contato@arthursantos.dev', // ⚑ TODO: e-mail real
-  // WhatsApp: DDI+DDD+número, só dígitos. +55 (17) 99230-1681
-  whatsapp: '5517992301681',
+  // WhatsApp centralizado em lib/whatsapp.ts (número, mensagens e geração de link).
   location: 'Brasil',
   social: {
     github: 'https://github.com/apsantos05',
@@ -28,16 +27,3 @@ export const site = {
     instagram: '',
   },
 } as const
-
-/** Link do WhatsApp com mensagem pré-preenchida. Cai no contato se o número não estiver configurado. */
-export function getWhatsappUrl(
-  message = 'Olá, Arthur! Vim pelo seu site e quero conversar sobre um projeto.',
-): string {
-  const digits = site.whatsapp.replace(/\D/g, '')
-  return digits ? `https://wa.me/${digits}?text=${encodeURIComponent(message)}` : '/#contato'
-}
-
-/** Há número de WhatsApp configurado? (para abrir em nova aba só quando for link real) */
-export function hasWhatsapp(): boolean {
-  return site.whatsapp.replace(/\D/g, '').length > 0
-}
