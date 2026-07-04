@@ -2,6 +2,7 @@ import { Hero } from '@/components/sections/Hero'
 import { About } from '@/components/sections/About'
 import { Services } from '@/components/sections/Services'
 import { Projects } from '@/components/sections/Projects'
+import { BeyondCode } from '@/components/sections/BeyondCode'
 import { Guarantees } from '@/components/sections/Guarantees'
 import { Testimonials } from '@/components/sections/Testimonials'
 import { Process } from '@/components/sections/Process'
@@ -23,6 +24,7 @@ export default function HomePage() {
       <Stacks />
       <Services />
       <Projects />
+      <BeyondCode />
       <Guarantees />
       <Testimonials />
       <Process />
