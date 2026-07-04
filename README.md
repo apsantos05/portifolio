@@ -72,11 +72,16 @@ npx tsc --noEmit  # checagem de tipos
 - **Acessibilidade:** HTML semântico, foco visível, `aria-*`, skip-link, `prefers-reduced-motion`.
 - **Segurança:** CSP + HSTS + demais headers, validação com Zod, honeypot anti-spam.
 - **Marca pessoal:** Hero "Início" centrado no nome + foto (`components/ui/PhotoFrame.tsx`),
-  Sobre "Minha história" com retrato — CTA principal direto no **WhatsApp** (`lib/site.ts`).
+  Sobre "Minha história" com retrato.
+- **WhatsApp centralizado:** número, mensagens e geração de link em **`lib/whatsapp.ts`** —
+  todos os CTAs de WhatsApp do site consomem esse único helper.
+- **Contato → WhatsApp:** o formulário valida, (futuramente) envia e-mail e redireciona o visitante
+  ao WhatsApp com a mensagem pronta. Orquestrado em `lib/contact.ts`.
+- **E-mail (provider trocável):** `lib/email.ts` expõe uma interface `EmailProvider` (Resend hoje;
+  SendGrid/SES/SMTP amanhã, sem mexer em componentes). Sem `RESEND_API_KEY`, degrada com um aviso
+  elegante e o fluxo segue (o lead vai pelo WhatsApp).
 - **Conversão:** prova social sem depoimentos (garantias + código aberto), lead magnets
   (diagnóstico gratuito, checklist real em `/recursos/checklist-site`), captura por newsletter e CTAs em degraus.
-- **E-mail (Resend):** contato e newsletter com envio real via `lib/email.ts` — configure a
-  `RESEND_API_KEY` no `.env.local` (veja `.env.example`). Sem a chave, o site funciona e apenas registra os leads.
 - **Stacks:** seção em esteira infinita (`components/ui/Marquee.tsx`) com as tecnologias reais
   extraídas dos repositórios do GitHub (`content/stacks.ts`) — CSS puro, acessível e com pausa no hover/foco.
 
@@ -86,9 +91,8 @@ Roadmap versionado em [`ROADMAP.md`](ROADMAP.md) — prioriza sempre marca e con
 
 ## ✦ Status
 
-Projeto em construção ativa. Pendências de ativos/config para trocar sem mexer em componentes:
-foto do Hero (`site.photo`) e do Sobre (`site.photoAbout`), número do **WhatsApp** (`site.whatsapp`),
-prints dos projetos, `RESEND_API_KEY` e domínio.
+Projeto em construção ativa. Pendências de ativos/config para ligar sem mexer em componentes:
+prints reais dos projetos, `RESEND_API_KEY` (envio de e-mail) e domínio definitivo.
 
 ---
 
