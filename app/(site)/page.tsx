@@ -24,11 +24,11 @@ export default function HomePage() {
       <Stacks />
       <Services />
       <Projects />
-      <BeyondCode />
       <Guarantees />
       <Testimonials />
       <Process />
       <Faq />
+      <BeyondCode />
       <LeadMagnet />
       <Contact />
     </>
