@@ -15,8 +15,8 @@ export const site = {
     'Arthur Santos é desenvolvedor full stack. Sites, sistemas e aplicações web sob medida — do problema à solução que realmente funciona.',
   // ⚑ Fotos: salvar em public/ e apontar aqui. Enquanto null, os frames mostram
   //    um placeholder premium (sem blueprint). A troca é só de caminho — 1 linha.
-  photo: '/arthur-santos.jpg' as string | null, // Hero (Início)
-  photoAbout: null as string | null, // Sobre — ex.: '/arthur-santos-2.jpg'
+  photo: '/arthur-santos.png' as string | null, // Hero (Início)
+  photoAbout: '/foto-sobre.png' as string | null, // Sobre
   email: 'contato@arthursantos.dev', // ⚑ TODO: e-mail real
   // WhatsApp: DDI+DDD+número, só dígitos. +55 (17) 99230-1681
   whatsapp: '5517992301681',
