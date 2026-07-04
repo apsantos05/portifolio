@@ -1,13 +1,12 @@
 'use server'
 
 import { contactSchema, type ContactState, type ContactFieldErrors } from '@/lib/validation'
-import { sendContactEmail } from '@/lib/email'
+import { handleContact } from '@/lib/contact'
 
 /**
  * Server Action de contato (React 19 useActionState).
- * - Validação com o MESMO schema do cliente (zod).
- * - Honeypot anti-spam (campo `website`).
- * - ⚑ TODO: integrar envio real (e-mail via Resend / CRM) — hoje registra e confirma.
+ * Fluxo: validar (zod + honeypot) → orquestrar (lib/contact) → devolver o link do WhatsApp.
+ * O envio real de e-mail liga sozinho quando a RESEND_API_KEY existir (ver lib/email.ts).
  */
 export async function submitContact(
   _prev: ContactState,
@@ -22,9 +21,9 @@ export async function submitContact(
     website: String(formData.get('website') ?? ''),
   }
 
-  // Honeypot preenchido → trata como spam e "confirma" sem processar.
+  // Honeypot preenchido → trata como spam: finge sucesso, sem WhatsApp nem processamento.
   if (raw.website) {
-    return { status: 'success', message: 'Mensagem recebida. Em breve entro em contato.' }
+    return { status: 'success', message: 'Mensagem recebida.' }
   }
 
   const parsed = contactSchema.safeParse(raw)
@@ -35,37 +34,14 @@ export async function submitContact(
       const key = issue.path[0] as keyof ContactFieldErrors
       if (key && !errors[key]) errors[key] = issue.message
     }
-    return {
-      status: 'error',
-      message: 'Confira os campos destacados.',
-      errors,
-    }
+    return { status: 'error', message: 'Confira os campos destacados.', errors }
   }
 
-  const result = await sendContactEmail({
-    name: parsed.data.name,
-    email: parsed.data.email,
-    company: parsed.data.company || undefined,
-    projectType: parsed.data.projectType,
-    message: parsed.data.message,
-  })
-
-  // Falha real de envio (chave existe mas o provedor recusou) → avisa o usuário.
-  if (result.error) {
-    return {
-      status: 'error',
-      message: 'Não consegui enviar agora. Tente de novo ou me chame direto no e-mail.',
-    }
-  }
-
-  // Enviado — ou ainda sem provedor configurado (skipped): registra e confirma,
-  // para não perder o lead enquanto a RESEND_API_KEY não estiver no ambiente.
-  if (result.skipped) {
-    console.info('[contato] lead recebido (Resend não configurado):', parsed.data.email)
-  }
+  const outcome = await handleContact(parsed.data)
 
   return {
     status: 'success',
-    message: 'Mensagem enviada. Obrigado — respondo pessoalmente em breve.',
+    message: 'Tudo certo! Estou te levando ao WhatsApp para conversarmos.',
+    whatsappUrl: outcome.whatsappUrl,
   }
 }

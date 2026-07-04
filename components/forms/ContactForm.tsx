@@ -1,22 +1,13 @@
 'use client'
 
-import { useActionState } from 'react'
+import { useActionState, useEffect } from 'react'
 import { useFormStatus } from 'react-dom'
-import { ArrowRight, CheckCircle2, Loader2 } from 'lucide-react'
+import { ArrowRight, CheckCircle2, Loader2, MessageCircle } from 'lucide-react'
 import { submitContact } from '@/app/actions/contact'
 import type { ContactState } from '@/lib/validation'
+import { projectTypes } from '@/content/contact'
 import { TextField, TextAreaField, SelectField, Honeypot } from './Field'
 import { cn } from '@/lib/cn'
-
-const projectTypes = [
-  { value: 'site', label: 'Site profissional' },
-  { value: 'sistema', label: 'Sistema web / SaaS' },
-  { value: 'aplicacao', label: 'Aplicação / automação' },
-  { value: 'dashboard', label: 'Dashboard' },
-  { value: 'integracao', label: 'API / integração' },
-  { value: 'ia', label: 'IA aplicada' },
-  { value: 'outro', label: 'Outro' },
-]
 
 const initialState: ContactState = { status: 'idle' }
 
@@ -47,6 +38,15 @@ function SubmitButton() {
 export function ContactForm() {
   const [state, formAction] = useActionState(submitContact, initialState)
 
+  // Fecho do fluxo: no sucesso, abre o WhatsApp automaticamente.
+  // Tenta nova aba; se o navegador bloquear, redireciona na mesma aba (nunca falha).
+  useEffect(() => {
+    if (state.status === 'success' && state.whatsappUrl) {
+      const win = window.open(state.whatsappUrl, '_blank', 'noopener,noreferrer')
+      if (!win) window.location.href = state.whatsappUrl
+    }
+  }, [state.status, state.whatsappUrl])
+
   if (state.status === 'success') {
     return (
       <div
@@ -58,10 +58,21 @@ export function ContactForm() {
         </span>
         <div>
           <h3 className="font-display text-heading-md font-semibold text-paper">
-            Mensagem enviada
+            Recebido!
           </h3>
           <p className="mt-2 text-body-md text-muted">{state.message}</p>
         </div>
+        {state.whatsappUrl && (
+          <a
+            href={state.whatsappUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 rounded-pill border border-line-active/70 px-5 py-2.5 text-sm font-semibold text-accent transition-colors hover:bg-accent-subtle"
+          >
+            <MessageCircle className="h-4 w-4" />
+            Não abriu? Abrir o WhatsApp
+          </a>
+        )}
       </div>
     )
   }
@@ -99,7 +110,7 @@ export function ContactForm() {
         <SelectField
           label="Tipo de projeto"
           name="projectType"
-          options={projectTypes}
+          options={projectTypes.map((t) => ({ value: t.value, label: t.label }))}
           error={state.errors?.projectType}
         />
       </div>
@@ -111,13 +122,18 @@ export function ContactForm() {
         error={state.errors?.message}
       />
 
-      <div className="mt-2 flex flex-wrap items-center gap-4">
-        <SubmitButton />
-        {state.status === 'error' && state.message && (
-          <p className="text-caption text-danger" role="alert">
-            {state.message}
-          </p>
-        )}
+      <div className="mt-2 flex flex-col gap-3">
+        <div className="flex flex-wrap items-center gap-4">
+          <SubmitButton />
+          {state.status === 'error' && state.message && (
+            <p className="text-caption text-danger" role="alert">
+              {state.message}
+            </p>
+          )}
+        </div>
+        <p className="text-caption text-muted-2">
+          Você será direcionado ao WhatsApp para finalizarmos a conversa.
+        </p>
       </div>
     </form>
   )

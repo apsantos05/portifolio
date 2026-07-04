@@ -32,6 +32,8 @@ export type ContactState = {
   status: 'idle' | 'success' | 'error'
   message?: string
   errors?: ContactFieldErrors
+  /** link do WhatsApp gerado no sucesso (fecho do fluxo) */
+  whatsappUrl?: string
 }
 
 /** Newsletter / captura de lead — mesmo schema compartilhado cliente/servidor. */
