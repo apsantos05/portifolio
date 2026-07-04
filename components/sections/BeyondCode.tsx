@@ -147,10 +147,13 @@ export function BeyondCode() {
 
           <div className="relative mx-auto max-w-3xl text-center">
             <Eyebrow className="justify-center">{beyond.vision.eyebrow}</Eyebrow>
-            <p className="mt-8 font-display text-[clamp(1.6rem,3.5vw,2.5rem)] font-bold leading-[1.2] tracking-[-0.02em] text-paper [text-wrap:balance]">
+            <p className="mt-8 font-display text-[clamp(1.5rem,3.4vw,2.4rem)] font-bold leading-[1.2] tracking-[-0.02em] text-paper [text-wrap:balance]">
               {beyond.vision.lead}
             </p>
-            <p className="mt-6 font-display text-[clamp(1.6rem,3.5vw,2.5rem)] font-bold leading-[1.2] tracking-[-0.02em] text-accent [text-wrap:balance]">
+            <p className="mx-auto mt-7 max-w-2xl text-body-lg leading-relaxed text-muted">
+              {beyond.vision.body}
+            </p>
+            <p className="mt-8 font-display text-[clamp(1.5rem,3.4vw,2.4rem)] font-bold leading-[1.25] tracking-[-0.02em] text-accent [text-wrap:balance]">
               {beyond.vision.closing}
             </p>
           </div>

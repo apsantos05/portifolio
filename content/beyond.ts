@@ -34,7 +34,8 @@ export const beyond: BeyondContent = {
   ],
   vision: {
     eyebrow: 'Minha visão',
-    lead: 'Acredito que o futuro da tecnologia será construído por profissionais capazes de unir engenharia de software, inteligência artificial e visão de negócios.',
-    closing: 'É nessa direção que estou construindo minha carreira.',
+    lead: 'Continuo sendo um desenvolvedor Full Stack. Mas cada sistema que construí me ensinou a mesma coisa: o código nunca foi o fim — é o meio para resolver um problema real de negócio.',
+    body: 'Foi essa prática, projeto após projeto, que me levou naturalmente a enxergar a tecnologia de forma mais estratégica: engenharia de software para construir o que dura, inteligência artificial para ampliar o que as equipes já fazem de melhor, e visão de negócio para que nada disso se perca no caminho.',
+    closing: 'Sem atalhos e sem promessas mágicas. Só a disciplina de construir, aprender e evoluir — um problema de cada vez.',
   },
 }

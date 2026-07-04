@@ -33,7 +33,7 @@ export type BeyondContent = {
   title: string
   subtitle: string
   blocks: BeyondBlock[]
-  vision: { eyebrow: string; lead: string; closing: string }
+  vision: { eyebrow: string; lead: string; body: string; closing: string }
 }
 
 // ── Serviços ─────────────────────────────────────────────────────────
