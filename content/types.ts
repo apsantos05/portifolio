@@ -25,6 +25,17 @@ export type AboutContent = {
   highlight: string
 }
 
+// ── Além do Código (visão / autoridade) ─────────────────────────────
+export type BeyondGlyph = 'ai' | 'engineering' | 'teams' | 'evolution'
+export type BeyondBlock = { glyph: BeyondGlyph; title: string; text: string }
+export type BeyondContent = {
+  eyebrow: string
+  title: string
+  subtitle: string
+  blocks: BeyondBlock[]
+  vision: { eyebrow: string; lead: string; closing: string }
+}
+
 // ── Serviços ─────────────────────────────────────────────────────────
 export type Service = {
   slug: string
