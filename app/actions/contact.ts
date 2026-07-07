@@ -1,7 +1,8 @@
 'use server'
 
+import { headers } from 'next/headers'
 import { contactSchema, type ContactState, type ContactFieldErrors } from '@/lib/validation'
-import { handleContact } from '@/lib/contact'
+import { handleContact, type ContactMeta } from '@/lib/contact'
 
 /**
  * Server Action de contato (React 19 useActionState).
@@ -37,7 +38,20 @@ export async function submitContact(
     return { status: 'error', message: 'Confira os campos destacados.', errors }
   }
 
-  const outcome = await handleContact(parsed.data)
+  // Metadados da requisição (para o e-mail): data/hora, IP e user-agent quando disponíveis.
+  const h = await headers()
+  const forwarded = h.get('x-forwarded-for') ?? h.get('x-real-ip') ?? ''
+  const meta: ContactMeta = {
+    submittedAt: new Date().toLocaleString('pt-BR', {
+      timeZone: 'America/Sao_Paulo',
+      dateStyle: 'short',
+      timeStyle: 'medium',
+    }),
+    ip: forwarded ? forwarded.split(',')[0]?.trim() || null : null,
+    userAgent: h.get('user-agent') ?? null,
+  }
+
+  const outcome = await handleContact(parsed.data, meta)
 
   return {
     status: 'success',
