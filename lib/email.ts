@@ -1,5 +1,4 @@
 import { Resend } from 'resend'
-import { site } from './site'
 
 /**
  * Camada de e-mail — arquitetura de PROVIDER, trocável sem tocar em componentes.
@@ -32,8 +31,10 @@ export interface EmailProvider {
 }
 
 // ── Configuração compartilhada ────────────────────────────────────
-const DEFAULT_FROM = process.env.CONTACT_FROM_EMAIL || 'Arthur Santos <onboarding@resend.dev>'
-const DEFAULT_TO = process.env.CONTACT_TO_EMAIL || site.email
+// Remetente padrão: onboarding@resend.dev (só entrega ao e-mail da conta Resend).
+// Destinatário padrão: e-mail pessoal — trocar por env (CONTACT_TO_EMAIL) sem tocar em código.
+const DEFAULT_FROM = process.env.CONTACT_FROM_EMAIL || 'Portfólio Arthur Santos <onboarding@resend.dev>'
+const DEFAULT_TO = process.env.CONTACT_TO_EMAIL || 'arthurpsantos05@gmail.com'
 
 // ── Provider: Resend ──────────────────────────────────────────────
 let resendClient: Resend | null | undefined
