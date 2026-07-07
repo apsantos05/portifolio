@@ -6,8 +6,7 @@
 export const site = {
   name: 'Arthur Santos',
   role: 'Desenvolvedor Full Stack',
-  // ⚑ TODO: confirmar domínio definitivo
-  url: 'https://arthursantos.dev',
+  url: 'https://www.arthurpsantos.tech',
   locale: 'pt-BR',
   // Frase-síntese do DISCOVERY.md §2
   tagline: 'Transformo a história de um negócio em um produto digital que funciona.',
