@@ -125,12 +125,35 @@ export const acertavest: CaseStudy = {
     },
   ],
 
-  // ⚑ Prints reais a adicionar em public/projects/acertavest/. Enquanto isso,
-  //    o MockupFrame renderiza um placeholder de marca com a legenda.
-  cover: { src: '', alt: 'AcertaVest — visão geral da plataforma', aspect: 'wide' },
+  cover: {
+    src: '/projects/acertavest/cover.png',
+    alt: 'AcertaVest — página inicial da plataforma, com o simulado em destaque e o acervo de materiais',
+    aspect: 'wide',
+  },
   gallery: [
-    { src: '', alt: 'AcertaVest — dashboard do estudante', aspect: 'video', caption: 'Dashboard do estudante' },
-    { src: '', alt: 'AcertaVest — resolução de questões com IA', aspect: 'video', caption: 'Resolução com apoio de IA' },
-    { src: '', alt: 'AcertaVest — acompanhamento de desempenho', aspect: 'video', caption: 'Evolução e desempenho' },
+    {
+      src: '/projects/acertavest/login.png',
+      alt: 'AcertaVest — tela de login da plataforma',
+      aspect: 'video',
+      caption: 'Login',
+    },
+    {
+      src: '/projects/acertavest/biblioteca.png',
+      alt: 'AcertaVest — biblioteca de materiais com filtros por vestibular, faculdade, ano, matéria e tipo',
+      aspect: 'video',
+      caption: 'Biblioteca de materiais',
+    },
+    {
+      src: '/projects/acertavest/simulados.png',
+      alt: 'AcertaVest — simulados oficiais do ENEM e da FUVEST, com tempo e estrutura fiéis à prova real',
+      aspect: 'video',
+      caption: 'Simulados oficiais',
+    },
+    {
+      src: '/projects/acertavest/perfil.webp',
+      alt: 'AcertaVest — perfil do estudante, com sequência de estudos, objetivo e estatísticas de desempenho',
+      aspect: 'video',
+      caption: 'Perfil do estudante',
+    },
   ],
 }
