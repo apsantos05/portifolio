@@ -77,9 +77,11 @@ npx tsc --noEmit  # checagem de tipos
   todos os CTAs de WhatsApp do site consomem esse único helper.
 - **Contato → WhatsApp:** o formulário valida, (futuramente) envia e-mail e redireciona o visitante
   ao WhatsApp com a mensagem pronta. Orquestrado em `lib/contact.ts`.
-- **E-mail (provider trocável):** `lib/email.ts` expõe uma interface `EmailProvider` (Resend hoje;
-  SendGrid/SES/SMTP amanhã, sem mexer em componentes). Sem `RESEND_API_KEY`, degrada com um aviso
-  elegante e o fluxo segue (o lead vai pelo WhatsApp).
+- **E-mail (Resend ativo):** o contato dispara um e-mail HTML profissional (nome, empresa, tipo,
+  mensagem, data/hora, IP e user-agent) para `CONTACT_TO_EMAIL` (padrão `arthurpsantos05@gmail.com`).
+  Arquitetura `EmailProvider` (Resend hoje; SendGrid/SES/SMTP amanhã, sem tocar em componentes).
+  Para ativar: defina `RESEND_API_KEY` no `.env.local`/Vercel (veja `.env.example`). Trocar o
+  destinatário = mudar `CONTACT_TO_EMAIL`. Sem chave, degrada com aviso e o lead segue pelo WhatsApp.
 - **Conversão:** prova social sem depoimentos (garantias + código aberto), lead magnets
   (diagnóstico gratuito, checklist real em `/recursos/checklist-site`), captura por newsletter e CTAs em degraus.
 - **Stacks:** seção em esteira infinita (`components/ui/Marquee.tsx`) com as tecnologias reais
