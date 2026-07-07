@@ -17,13 +17,13 @@ export const site = {
   //    um placeholder premium (sem blueprint). A troca é só de caminho — 1 linha.
   photo: '/arthur-santos.png' as string | null, // Hero (Início)
   photoAbout: '/foto-sobre.png' as string | null, // Sobre
-  email: 'contato@arthursantos.dev', // ⚑ TODO: e-mail real
+  email: 'arthurpsantos05@gmail.com',
   // WhatsApp centralizado em lib/whatsapp.ts (número, mensagens e geração de link).
   location: 'Brasil',
   social: {
     github: 'https://github.com/apsantos05',
-    // ⚑ TODO: handles reais — vazio = oculto na UI (evita link quebrado)
-    linkedin: '',
+    linkedin: 'https://www.linkedin.com/in/arthurpsantos/',
+    // ⚑ TODO: handle real — vazio = oculto na UI (evita link quebrado)
     instagram: '',
   },
 } as const
